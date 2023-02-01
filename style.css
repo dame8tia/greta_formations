@@ -13,11 +13,11 @@ Text Domain: greta
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 */
 
-header{
+#header-bcg{
+    border : red solid 1px ;
     background-image: url("/images/nasa_saturn.jpg");
-    background-size: cover;
 }
 
-.header-bcg{
-    border : red solid 1px ;
+.custom-link{
+    text-decoration: none;
 }

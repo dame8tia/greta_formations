@@ -1,9 +1,6 @@
 <?php get_header(); ?>
 
-<p class="">Front Page</p>
-
-
-
+<h1>Pages</h1>
 
 <?php if( have_posts() ) : while( have_posts() ) : the_post(); ?>
 
