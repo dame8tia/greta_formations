@@ -21,3 +21,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
 .custom-link{
     text-decoration: none;
 }
+
+footer{
+    background-color: darkcyan;
+}

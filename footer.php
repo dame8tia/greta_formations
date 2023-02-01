@@ -1,3 +1,9 @@
+
+
+
+    </div> <!-- div container du header -->
+
+
     <footer>
         <!-- <div class="container d-flex flex-row mb-3"> -->
         <?php wp_nav_menu(
@@ -10,12 +16,6 @@
                 ) ;?>
         </div>
     </footer>
-
-
-    </div> <!-- div container du header -->
-
-
-
 <?php wp_footer();?>
 
 </body>
