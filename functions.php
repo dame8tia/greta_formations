@@ -35,6 +35,17 @@ function greta_my_style() {
 }
 add_action('wp_enqueue_scripts', 'greta_my_style',11);
 
+function greta_js_like() {// script js détecté au addEventListener
+
+    // Seulement sur la page d'archive pour les formations
+    if( is_archive() ) {
+        wp_enqueue_script( 'script-like', get_template_directory_uri().'/scripts/like.js', true);
+    }
+
+}
+add_action('wp_enqueue_scripts', 'greta_js_like');
+
+
 /**
  * modification de la classe des li du menu cf.header
  */
@@ -51,3 +62,30 @@ function greta_menu_link(array $attr):array
     return $attr;
 }
 add_filter( 'nav_menu_link_attributes', 'greta_menu_link');
+
+
+// création CPT 
+function greta_register_post_types() {
+	    // CPT Formations
+        $labels = array(
+            'name' => 'formation',
+            'all_items' => 'Toutes les formations',  // affiché dans le sous menu
+            'singular_name' => 'formation',
+            'add_new_item' => 'Ajouter une formation',
+            'edit_item' => 'Modifier une formation',
+            'menu_name' => 'Formations'
+        );
+    
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'show_in_rest' => true,
+            'has_archive' => true,
+            'supports' => array( 'title', 'editor','thumbnail' ),
+            'menu_position' => 5, 
+            'menu_icon' => 'dashicons-admin-customizer',
+        );
+    
+        register_post_type( 'formation', $args );
+}
+add_action( 'init', 'greta_register_post_types' );

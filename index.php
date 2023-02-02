@@ -1,4 +1,4 @@
-<?php get_header();?>
+<?php get_header();?>    
 
     <h1>INDEX</h1>
     

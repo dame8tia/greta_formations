@@ -8,7 +8,7 @@
     <?php wp_head();?>
 </head>
 
-<body>
+<body <?php body_class();?>>
     <header class= "header-bcg">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
