@@ -13,8 +13,8 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="#">
-                    <img src="https://localhost/wordpress-6.1.1-fr_FR/wordpress/wp-content/uploads/2023/01/LOGO.jpg" alt="" width =180px height=80px>
+                <a class="navbar-brand" href="<?= home_url('/');?>">
+                    <img src="<?= get_template_directory_uri();?> /images/logo.jpg" alt="" width =180px height=80px>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

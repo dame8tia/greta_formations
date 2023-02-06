@@ -89,3 +89,16 @@ function greta_register_post_types() {
         register_post_type( 'formation', $args );
 }
 add_action( 'init', 'greta_register_post_types' );
+
+
+// ajout une meta box pour le CPT formation
+
+function greta_initialisation_metaboxes(){
+  //on utilise la fonction add_metabox() pour initialiser une metabox
+  add_meta_box('cpt_formation', 'Formation', 'greta_meta_box_cpt_formation', 'formation');
+}
+
+function greta_meta_box_cpt_formation(){
+    echo "salut";
+}
+add_action('add_meta_boxes','greta_initialisation_metaboxes');

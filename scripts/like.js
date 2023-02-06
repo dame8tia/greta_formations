@@ -1,5 +1,5 @@
 
-function like_dislike(){
-    let elementHtml = document.getElementById('like')
-    console.log("Traitemnt pour le like ... A FAIRE ")
+function like_dislike(cd_rome){
+    let elementHtml_id = document.getElementById(cd_rome)
+    console.log(elementHtml_id)
 }
