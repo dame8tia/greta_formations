@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<p class="">Single</p>
+
   <?php if( have_posts() ) : while( have_posts() ) : the_post(); ?>
 	
 	<article class="post">
@@ -13,6 +15,18 @@
 
 		<div class="post__meta">
 			<?php echo get_avatar( get_the_author_meta( 'ID' ), 40 ); ?>
+			<div class= "row">
+				<div class="col-sm-6">
+					Publié le <?php the_date(); ?>
+					par <?php the_author(); ?>
+				</div>
+				<div class="col-sm-6">
+					Dans la catégorie <?php the_category(); ?>
+					</br>
+					Avec les étiquettes <?php the_tags(); ?>
+				</br>
+				</div>
+			</div>
 		</div>
 
 		<div class="post__content">
