@@ -1,0 +1,17 @@
+
+
+
+    <?php
+if (isset($_GET['wish'])) {
+    echo "traitement du GET";
+    var_dump($_GET);
+    $myFormations = "";
+    $myFormations = $_GET["wish"];
+    echo "</br>";
+    //echo preg_match($myFormations, "308");
+    echo strpos($myFormations,308 );
+    echo "</br>";
+    echo is_null(preg_match($myFormations, "308"));
+    echo "traitement du GET";
+}
+?>

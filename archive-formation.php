@@ -1,22 +1,10 @@
 <?php get_header(); ?>
 
-<?php 
-/* function recup_slug_indv($slug_cpt){
-    $cpt_ind = get_post_type_object($slug_cpt);
-
-    if ($cpt_ind){
-        return $cpt_ind->rewrite['slug'];
-    }
-} ; */
-?>
-
 <h2>Listing des formations proposées </h2>
 </br>
-
-<button class="btn btn-primary" onclick="delete_fav()" > </button>
+<button class="btn btn-primary" onclick="delete_fav()" > suppr. favoris </button>
 
 <?php if( have_posts() ) : ?> 
-
     <table class="table">
         <thead>
             <td><h5>Intitulé</h5></td>
@@ -33,29 +21,6 @@
         <tboby>
         <?php while( have_posts() ) : the_post(); ?>
 
-
-            <?php //$var = the_ID(); ?>
-            <?php //echo get_post_name() ; ?>
-            <?php //$object = get_queried_object(); ?> 
-
-            <?php 
-            //$slug_cpt = $object->name;
-
-            //$cpt_ind = get_post_type_object($slug_cpt);
-            // $cpt_ind->rewrite['slug'];
-
-/*             $arg = [
-                'post-type' => 'post',
-                'post-name'=> 'formation'
-            ];  */
-            
-/*             echo "<pre>";
-            echo get_posts($arg);
-            echo the_post_name() ;
-
-            echo "</pre>"; */
-            ?>
-
             <tr>
                 <td><span><b><?php the_title(); ?></b></span></td>
                 <td colspan="3"><span><?php the_content(); ?></span></td>
@@ -68,14 +33,15 @@
 
                 <td><a href="<?php echo the_permalink(); ?>"><button >voir</button></a></td>
                 <td><a href="#"><button >contact</button></a></td>
-                <td><button id="<?php echo the_ID(); ?>" onclick = "like_dislike(<?php echo the_ID(); ?>)" class="btn btn-outline-warning"><span class="dashicons dashicons-star-empty"></span></button></td> <!-- <span class="dashicons dashicons-star-empty"></span>    <span class="dashicons dashicons-star-filled"></span> -->
-                <!-- <td><button id="<?php /* echo "1" */ ?>" class="like" onclick=like_dislike(<?php /* echo "1" */ ?>) ><span>  <i class="bi bi-star"></i></span></button></td> -->
+                <td><button id="<?php echo the_ID(); ?>" onclick = "like_dislike(<?php echo the_ID(); ?>)" class="btn btn-outline-warning"><span class="dashicons dashicons-star-empty"></span></button></td>
             </tr>
         <?php endwhile; endif; ?>
         </tboby>
         
     </table>
     
-
+<?php if(is_archive('formation') ): ?>
+    <script>init()</script> <!-- Pour mise à jour des icones pour les formations dans la WishList -->
+<?php endif; ?>
 
 <?php get_footer(); ?>

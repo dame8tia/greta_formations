@@ -1,23 +1,81 @@
-console.log("coucou en dehors des fcts  IT S SURE");
 
-function display_wish()
-{
-    console.log("je suis sur la page Wishlist");
-    favorite = localStorage.getItem("id_fav");
-    console.log(favorite);
+function init(){ // L'appel de cette fonction se fait à la fin du fichier archive-formation.php
     
-    //Code JavaScript
+    console.log("INIT")
+    favorite = localStorage.getItem("id_fav");
+    fav_stored = [];
+    if (favorite != null){
+        fav_stored = favorite.split(',');
+        console.log(fav_stored);
+    }
+
+    // installation des icones pleines si ce sont des favoris (présentes dans fav_stored)
+    for(let i = 0; i < fav_stored.length; i++){
+        id_fav = fav_stored[i];        
+        if (id_fav != "null"){
+            myFormation = document.getElementById(id_fav);
+            btn = myFormation;
+            btn.innerHTML ='<span class="dashicons dashicons-star-filled"></span>' ;
+        }
+
+    }
+}
+
+function display_wish() // appel depuis le fichier page-wishlist.php
+{
+    console.log("display_wish function");
+    favorite = localStorage.getItem("id_fav");
+    fav_stored = [];
+    if (favorite =='null'){// Le premier ajout dans le LocalStorage est précédé de l'élément null, ici on l'enlève 
+        //
+    }
+    else {
+        if (favorite != null){
+            fav_stored = favorite.split(',');
+            console.log(fav_stored);
+        }
+    }
+
+
+    
+
+    let eleTableListe = document.getElementsByClassName("ligne");// Pour traiter les formations likées
+    let container = document.getElementsByClassName("container-tableau")
+    const url = '?wish=' + favorite ;
+    
     var requete = new XMLHttpRequest();
-    requete.open("GET",'?wish=' + favorite, true); //True pour que l'exécution du script continue pendant le chargement, false pour attendre.
-    requete.onload = function() {
-    //La variable à passer est alors contenue dans l'objet response et l'attribut responseText.
-        //let data = JSON.parse(requete.responseText)
-    };   
-    requete.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    console.log("Element Tableau : ", eleTableListe);
+    requete.open("GET", url, true); //True pour que l'exécution du script continue pendant le chargement, false pour attendre.
+    
+    requete.onreadystatechange = function()
+    {
+        if (requete.readyState===4 && requete.status === 200){
+
+            compte = 0 ;
+
+            for (let i = 0; i < eleTableListe.length; i++)
+            {
+                id_html = eleTableListe[i].id;
+                if(fav_stored.indexOf(id_html.toString()) > -1) {//index de l'id sup à -1 => présent
+                    eleTableListe[i].style.display = null  ;  
+                    //console.log("Favoris existants");   
+                    compte +=1 ;       
+                }
+            }
+            if (compte == 0){
+                //console.log('Cas où aucune formation sélectionnée');
+                container[0].innerHTML = "<h3>Aucune formation mise comme favori</h3>";
+            }
+        }  
+    } 
     requete.send();
 }
 
-function like_dislike(id) {   
+
+
+function like_dislike(id) {  // Se déclenche dès que l'on clique sur l'étoile (valable sur les 2 fichiers) 
+
+    console.log("like_dislike function");
  
     let fav = localStorage.getItem("id_fav");     
     let fav_stored = [];// Sert pour tester la présence d'une formation, et le retrait si doublon
